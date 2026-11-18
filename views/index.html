@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Recipes API</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 16px; color: #222; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background: #f4f4f4; }
+    code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <h1>Recipes API</h1>
+  <p>A CRUD REST API for managing recipes. Base path: <code>/api/recipes</code></p>
+  <table>
+    <tr><th>Method</th><th>Endpoint</th><th>Description</th></tr>
+    <tr><td>POST</td><td>/api/recipes</td><td>Create a recipe</td></tr>
+    <tr><td>GET</td><td>/api/recipes</td><td>Get all recipes</td></tr>
+    <tr><td>GET</td><td>/api/recipes/:id</td><td>Get a recipe by ID</td></tr>
+    <tr><td>PUT</td><td>/api/recipes/:id</td><td>Update a recipe by ID</td></tr>
+    <tr><td>DELETE</td><td>/api/recipes/:id</td><td>Delete a recipe by ID</td></tr>
+  </table>
+</body>
+</html>

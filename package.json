@@ -1,0 +1,20 @@
+{
+  "name": "recipes-app",
+  "version": "1.0.0",
+  "description": "Recipes CRUD REST API built with Node.js, Express.js and Mongoose (MVC pattern)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": ["nodejs", "express", "mongoose", "crud", "recipes"],
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

@@ -1,0 +1,489 @@
+{
+  "info": {
+    "name": "Recipes API",
+    "description": "CRUD API for managing recipes (Node.js, Express.js, Mongoose). Set the `baseUrl` collection variable to your local or deployed server URL.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000"
+    }
+  ],
+  "item": [
+    {
+      "name": "Create Recipe",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/recipes",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "recipes"
+          ]
+        },
+        "description": "Creates a new recipe. Required: title, ingredients (array), instructions.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Paneer Butter Masala\",\n  \"description\": \"Rich and creamy North Indian curry\",\n  \"ingredients\": [\n    \"Paneer\",\n    \"Butter\",\n    \"Tomato puree\",\n    \"Cream\",\n    \"Spices\"\n  ],\n  \"instructions\": \"Saute spices, add tomato puree, simmer, add paneer and cream.\",\n  \"cookingTime\": 40,\n  \"servings\": 4,\n  \"difficulty\": \"medium\",\n  \"category\": \"Main course\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "name": "201 Created",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/recipes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "recipes"
+              ]
+            },
+            "description": "Creates a new recipe. Required: title, ingredients (array), instructions.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Paneer Butter Masala\",\n  \"description\": \"Rich and creamy North Indian curry\",\n  \"ingredients\": [\n    \"Paneer\",\n    \"Butter\",\n    \"Tomato puree\",\n    \"Cream\",\n    \"Spices\"\n  ],\n  \"instructions\": \"Saute spices, add tomato puree, simmer, add paneer and cream.\",\n  \"cookingTime\": 40,\n  \"servings\": 4,\n  \"difficulty\": \"medium\",\n  \"category\": \"Main course\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": 201,
+          "code": "Created",
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"success\": true,\n  \"message\": \"Recipe created\",\n  \"data\": {\n    \"_id\": \"665f1c2a9b1e4a0012a4b7c1\",\n    \"title\": \"Paneer Butter Masala\",\n    \"description\": \"Rich and creamy North Indian curry\",\n    \"ingredients\": [\n      \"Paneer\",\n      \"Butter\",\n      \"Tomato puree\",\n      \"Cream\",\n      \"Spices\"\n    ],\n    \"instructions\": \"Saute spices, add tomato puree, simmer, add paneer and cream.\",\n    \"cookingTime\": 40,\n    \"servings\": 4,\n    \"difficulty\": \"medium\",\n    \"category\": \"Main course\",\n    \"createdAt\": \"2024-06-04T10:15:22.000Z\",\n    \"updatedAt\": \"2024-06-04T10:15:22.000Z\",\n    \"__v\": 0\n  }\n}"
+        },
+        {
+          "name": "400 Validation Error",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/recipes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "recipes"
+              ]
+            },
+            "description": "Creates a new recipe. Required: title, ingredients (array), instructions.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Paneer Butter Masala\",\n  \"description\": \"Rich and creamy North Indian curry\",\n  \"ingredients\": [\n    \"Paneer\",\n    \"Butter\",\n    \"Tomato puree\",\n    \"Cream\",\n    \"Spices\"\n  ],\n  \"instructions\": \"Saute spices, add tomato puree, simmer, add paneer and cream.\",\n  \"cookingTime\": 40,\n  \"servings\": 4,\n  \"difficulty\": \"medium\",\n  \"category\": \"Main course\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": 400,
+          "code": "Bad Request",
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"success\": false,\n  \"message\": \"Validation failed\",\n  \"errors\": [\n    \"Title is required\",\n    \"Instructions are required\"\n  ]\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get All Recipes",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/recipes",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "recipes"
+          ]
+        },
+        "description": "Returns all recipes, newest first."
+      },
+      "response": [
+        {
+          "name": "200 OK",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/recipes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "recipes"
+              ]
+            },
+            "description": "Returns all recipes, newest first."
+          },
+          "status": 200,
+          "code": "OK",
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"success\": true,\n  \"count\": 1,\n  \"data\": [\n    {\n      \"_id\": \"665f1c2a9b1e4a0012a4b7c1\",\n      \"title\": \"Paneer Butter Masala\",\n      \"description\": \"Rich and creamy North Indian curry\",\n      \"ingredients\": [\n        \"Paneer\",\n        \"Butter\",\n        \"Tomato puree\",\n        \"Cream\",\n        \"Spices\"\n      ],\n      \"instructions\": \"Saute spices, add tomato puree, simmer, add paneer and cream.\",\n      \"cookingTime\": 40,\n      \"servings\": 4,\n      \"difficulty\": \"medium\",\n      \"category\": \"Main course\",\n      \"createdAt\": \"2024-06-04T10:15:22.000Z\",\n      \"updatedAt\": \"2024-06-04T10:15:22.000Z\",\n      \"__v\": 0\n    }\n  ]\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get Recipe By ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/recipes/665f1c2a9b1e4a0012a4b7c1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "recipes",
+            "665f1c2a9b1e4a0012a4b7c1"
+          ]
+        },
+        "description": "Returns a single recipe by its ID."
+      },
+      "response": [
+        {
+          "name": "200 OK",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/recipes/665f1c2a9b1e4a0012a4b7c1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "recipes",
+                "665f1c2a9b1e4a0012a4b7c1"
+              ]
+            },
+            "description": "Returns a single recipe by its ID."
+          },
+          "status": 200,
+          "code": "OK",
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"success\": true,\n  \"data\": {\n    \"_id\": \"665f1c2a9b1e4a0012a4b7c1\",\n    \"title\": \"Paneer Butter Masala\",\n    \"description\": \"Rich and creamy North Indian curry\",\n    \"ingredients\": [\n      \"Paneer\",\n      \"Butter\",\n      \"Tomato puree\",\n      \"Cream\",\n      \"Spices\"\n    ],\n    \"instructions\": \"Saute spices, add tomato puree, simmer, add paneer and cream.\",\n    \"cookingTime\": 40,\n    \"servings\": 4,\n    \"difficulty\": \"medium\",\n    \"category\": \"Main course\",\n    \"createdAt\": \"2024-06-04T10:15:22.000Z\",\n    \"updatedAt\": \"2024-06-04T10:15:22.000Z\",\n    \"__v\": 0\n  }\n}"
+        },
+        {
+          "name": "404 Not Found",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/recipes/665f1c2a9b1e4a0012a4b7c1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "recipes",
+                "665f1c2a9b1e4a0012a4b7c1"
+              ]
+            },
+            "description": "Returns a single recipe by its ID."
+          },
+          "status": 404,
+          "code": "Not Found",
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"success\": false,\n  \"message\": \"Recipe not found\"\n}"
+        },
+        {
+          "name": "400 Invalid ID",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/recipes/665f1c2a9b1e4a0012a4b7c1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "recipes",
+                "665f1c2a9b1e4a0012a4b7c1"
+              ]
+            },
+            "description": "Returns a single recipe by its ID."
+          },
+          "status": 400,
+          "code": "Bad Request",
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"success\": false,\n  \"message\": \"Invalid recipe ID\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Update Recipe",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/recipes/665f1c2a9b1e4a0012a4b7c1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "recipes",
+            "665f1c2a9b1e4a0012a4b7c1"
+          ]
+        },
+        "description": "Updates the given fields of a recipe by ID.",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"cookingTime\": 35,\n  \"difficulty\": \"easy\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "name": "200 OK",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/recipes/665f1c2a9b1e4a0012a4b7c1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "recipes",
+                "665f1c2a9b1e4a0012a4b7c1"
+              ]
+            },
+            "description": "Updates the given fields of a recipe by ID.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cookingTime\": 35,\n  \"difficulty\": \"easy\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": 200,
+          "code": "OK",
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"success\": true,\n  \"message\": \"Recipe updated\",\n  \"data\": {\n    \"_id\": \"665f1c2a9b1e4a0012a4b7c1\",\n    \"title\": \"Paneer Butter Masala\",\n    \"description\": \"Rich and creamy North Indian curry\",\n    \"ingredients\": [\n      \"Paneer\",\n      \"Butter\",\n      \"Tomato puree\",\n      \"Cream\",\n      \"Spices\"\n    ],\n    \"instructions\": \"Saute spices, add tomato puree, simmer, add paneer and cream.\",\n    \"cookingTime\": 35,\n    \"servings\": 4,\n    \"difficulty\": \"easy\",\n    \"category\": \"Main course\",\n    \"createdAt\": \"2024-06-04T10:15:22.000Z\",\n    \"updatedAt\": \"2024-06-04T11:00:00.000Z\",\n    \"__v\": 0\n  }\n}"
+        },
+        {
+          "name": "404 Not Found",
+          "originalRequest": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/recipes/665f1c2a9b1e4a0012a4b7c1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "recipes",
+                "665f1c2a9b1e4a0012a4b7c1"
+              ]
+            },
+            "description": "Updates the given fields of a recipe by ID.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cookingTime\": 35,\n  \"difficulty\": \"easy\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": 404,
+          "code": "Not Found",
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"success\": false,\n  \"message\": \"Recipe not found\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Delete Recipe",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/recipes/665f1c2a9b1e4a0012a4b7c1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "recipes",
+            "665f1c2a9b1e4a0012a4b7c1"
+          ]
+        },
+        "description": "Deletes a recipe by ID."
+      },
+      "response": [
+        {
+          "name": "200 OK",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/recipes/665f1c2a9b1e4a0012a4b7c1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "recipes",
+                "665f1c2a9b1e4a0012a4b7c1"
+              ]
+            },
+            "description": "Deletes a recipe by ID."
+          },
+          "status": 200,
+          "code": "OK",
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"success\": true,\n  \"message\": \"Recipe deleted\",\n  \"data\": {}\n}"
+        },
+        {
+          "name": "404 Not Found",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/recipes/665f1c2a9b1e4a0012a4b7c1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "recipes",
+                "665f1c2a9b1e4a0012a4b7c1"
+              ]
+            },
+            "description": "Deletes a recipe by ID."
+          },
+          "status": 404,
+          "code": "Not Found",
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"success\": false,\n  \"message\": \"Recipe not found\"\n}"
+        }
+      ]
+    }
+  ]
+}
